@@ -118,7 +118,7 @@ export default function Home() {
       <header className={styles.header}>
         <div className={styles.headerIcon}>
           <img
-            src="/snakeicoAI.ico"
+            src="/snakeIcoAI.ico"
             alt="Snake Identifier AI logo"
             width={64}
             height={64}
