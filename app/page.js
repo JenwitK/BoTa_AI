@@ -321,8 +321,7 @@ export default function Home() {
 
       <footer className={styles.footer}>
         <p>
-          For educational purposes only. In a snake emergency, contact local
-          emergency services or a wildlife professional immediately.
+          Power By BoatJwi On top
         </p>
       </footer>
     </div>
