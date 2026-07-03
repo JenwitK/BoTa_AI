@@ -1,5 +1,10 @@
 import { NextResponse } from 'next/server';
 
+// Backend selector: set PREDICT_API_URL in .env.local to test a local model
+// (e.g. http://localhost:8000/predict); falls back to the HF Space in prod.
+const PREDICT_API_URL =
+  process.env.PREDICT_API_URL || 'https://botaai-bota-api.hf.space/predict';
+
 export async function POST(request) {
   try {
     // 1. รับข้อมูลจากหน้าเว็บ
@@ -23,7 +28,7 @@ export async function POST(request) {
     }
 
     // 2. ส่งรูปภาพข้ามไปให้ Hugging Face ประมวลผล (ตรงนี้แหละคือจุดเชื่อมต่อ!)
-    const hfResponse = await fetch('https://botaai-bota-api.hf.space/predict', {
+    const hfResponse = await fetch(PREDICT_API_URL, {
       method: 'POST',
       body: formData, // ส่งรูปแบบตรงๆ ไปเลย
     });
