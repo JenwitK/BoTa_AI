@@ -57,6 +57,7 @@ export default function Home() {
   const [predictions, setPredictions] = useState([]);
   const [inferenceMs, setInferenceMs] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
+  const [noSnake, setNoSnake] = useState(null);
   const [modelId, setModelId] = useState('serpent-1.0');
 
   const fileInputRef = useRef(null);
@@ -80,6 +81,7 @@ export default function Home() {
     setPreview(URL.createObjectURL(file));
     setPredictions([]);
     setInferenceMs(null);
+    setNoSnake(null);
     setStatus('analyzing');
 
     const body = new FormData();
@@ -97,8 +99,17 @@ export default function Home() {
       const json = await res.json();
       if (!json.success) throw new Error(json.error || 'Prediction failed.');
 
-      setPredictions(json.predictions);
       setInferenceMs(json.inference_ms);
+
+      // Gate said the image isn't a snake — show a clear message, not a result.
+      if (json.is_snake === false) {
+        setPredictions([]);
+        setNoSnake(json.message || 'ไม่พบงูในภาพ — กรุณาอัปโหลดรูปงู');
+        setStatus('success');
+        return;
+      }
+
+      setPredictions(json.predictions);
       setStatus('success');
     } catch (e) {
       setStatus('error');
@@ -144,6 +155,7 @@ export default function Home() {
     setPredictions([]);
     setInferenceMs(null);
     setErrorMessage('');
+    setNoSnake(null);
     setStatus('idle');
     dragCounter.current = 0;
   };
@@ -308,7 +320,15 @@ export default function Home() {
               </a>
             )}
 
-            {hasResult ? (
+            {noSnake ? (
+              <div className={styles.noSnake} role="status">
+                <span className={styles.noSnakeMark} aria-hidden="true">⚠</span>
+                <p className={styles.noSnakeText}>{noSnake}</p>
+                <button className={styles.resetButton} onClick={handleReset}>
+                  ลองใหม่
+                </button>
+              </div>
+            ) : hasResult ? (
               <>
                 <ul className={styles.predictionList} role="list">
                   {predictions.map((pred, index) => {
