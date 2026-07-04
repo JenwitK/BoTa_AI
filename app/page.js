@@ -20,7 +20,18 @@ const MODELS = [
     tier: 'แม่นยำ',
     arch: 'ConvNeXtV2-Tiny',
     resolution: '384 × 384 px',
-    desc: 'โมเดลหลัก ความแม่นยำสูง เหมาะกับงานทั่วไป',
+    classes: 131,
+    desc: 'เร็ว · เหมาะกับงานทั่วไป',
+    available: true,
+  },
+  {
+    id: 'serpent-pro',
+    name: 'Serpent Pro',
+    tier: 'แม่นสุด',
+    arch: 'ConvNeXtV2-Base',
+    resolution: '384 × 384 px',
+    classes: 211,
+    desc: 'แม่นยำสูงสุด · ครอบคลุม 211 สายพันธุ์',
     available: true,
   },
   {
@@ -29,16 +40,8 @@ const MODELS = [
     tier: 'เร็ว',
     arch: '—',
     resolution: '—',
+    classes: 131,
     desc: 'เบาและเร็ว เหมาะกับมือถือ',
-    available: false,
-  },
-  {
-    id: 'serpent-pro',
-    name: 'Serpent Pro',
-    tier: 'แม่นสุด',
-    arch: '—',
-    resolution: '—',
-    desc: 'ละเอียดสูงสุด สำหรับเคสยาก',
     available: false,
   },
 ];
@@ -477,7 +480,7 @@ export default function Home() {
                 <span className={styles.specKey}>Input</span>
                 <span className={styles.specVal}>{selectedModel.resolution}</span>
                 <span className={styles.specKey}>Classes</span>
-                <span className={styles.specVal}>131 species</span>
+                <span className={styles.specVal}>{selectedModel.classes} species</span>
                 <span className={styles.specKey}>Region</span>
                 <span className={styles.specVal}>Thailand</span>
               </div>
