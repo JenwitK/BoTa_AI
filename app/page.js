@@ -166,7 +166,9 @@ export default function Home() {
   const isProcessing = status === 'analyzing';
   const padRank = (n) => String(n).padStart(2, '0');
   const hasResult = status === 'success' && predictions.length > 0;
-  const venomousDetected = hasResult && predictions.some(p => p.isVenomous);
+  // Show the emergency call only when the TOP-1 prediction (highest confidence)
+  // is venomous — not when a lower-ranked guess happens to be venomous.
+  const venomousDetected = hasResult && predictions[0]?.isVenomous;
 
   return (
     <div className={styles.page}>
