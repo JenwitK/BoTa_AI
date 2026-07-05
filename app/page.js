@@ -181,11 +181,11 @@ export default function Home() {
       {/* ── Top status bar ─────────────────────────────────────── */}
       <div className={styles.topbar}>
         <div className={styles.brand}>
-          <h1 className={styles.wordmark}>จำแนกงู</h1>
+          <h1 className={styles.wordmark}>Indentifier</h1>
           <span className={`${styles.wordmarkSub} ${styles.mono}`}>SNAKE&nbsp;ID</span>
         </div>
         <nav className={styles.nav}>
-          <Link href="/" className={`${styles.navLink} ${styles.navLinkActive}`}>จำแนก</Link>
+          <Link href="/" className={`${styles.navLink} ${styles.navLinkActive}`}>Identify</Link>
           {CHAT_ENABLED ? (
             <Link href="/chat" className={styles.navLink}>พูดคุยกับ Serpent AI</Link>
           ) : (
