@@ -22,11 +22,11 @@ const MODELS = [
   {
     id: 'serpent-1.0',
     name: 'Serpent 1.0',
-    tier: 'มีความรู้ระดับพื้นฐาน',
+    tier: 'พื้นฐาน',
     arch: 'ConvNeXtV2-Tiny',
     resolution: '384 × 384 px',
     classes: 131,
-    desc: 'รู้จักงูไทย 131 ชนิด · เร็ว · เหมาะกับงานทั่วไป',
+    desc: 'รู้จักงูไทย 131 ชนิด · ประมวลผลเร็ว ',
     available: true,
   },
   {
@@ -36,17 +36,17 @@ const MODELS = [
     arch: 'ConvNeXtV2-Base',
     resolution: '384 × 384 px',
     classes: 211,
-    desc: 'รู้จักงู 211 ชนิด · ข้อมูลเยอะกว่า Serpent 1.0 · ประมวลผลนานกว่า',
+    desc: 'รู้จักงู 211 ชนิด · ประมวลผลช้ากว่า',
     available: true,
   },
   {
     id: 'serpent-lite',
-    name: 'Serpent Lite',
+    name: 'Ultra Serpent AI',
     tier: 'เร็ว',
     arch: '—',
     resolution: '—',
     classes: 131,
-    desc: 'เบาและเร็ว เหมาะกับมือถือ',
+    desc: 'ชุดข้อมูลแน่นกว่าเดิม ประมวลผลช้า',
     available: false,
   },
 ];
@@ -181,7 +181,7 @@ export default function Home() {
       {/* ── Top status bar ─────────────────────────────────────── */}
       <div className={styles.topbar}>
         <div className={styles.brand}>
-          <h1 className={styles.wordmark}>Indentifier</h1>
+          <h1 className={styles.wordmark}>Identifier</h1>
           <span className={`${styles.wordmarkSub} ${styles.mono}`}>SNAKE&nbsp;ID</span>
         </div>
         <nav className={styles.nav}>
@@ -200,13 +200,22 @@ export default function Home() {
           )}
         </nav>
         <div className={`${styles.sysMeta} ${styles.mono}`}>
-          <span className={styles.sysSpec}>131&nbsp;<b>SPECIES</b></span>
+          <span className={styles.sysSpec}>{selectedModel.classes}&nbsp;<b>SPECIES</b></span>
           <span className={styles.sysSpec}><b>{selectedModel.name}</b></span>
           <span className={styles.statusChip}>
             <span className={styles.statusDot} aria-hidden="true" />
             SYSTEM READY
           </span>
         </div>
+      </div>
+
+      {/* ── Beta notice ────────────────────────────────────────── */}
+      <div className={styles.betaNotice} role="status">
+        <span className={`${styles.betaTag} ${styles.mono}`}>เวอร์ชันทดลอง</span>
+        <span>
+          โมเดลยังอยู่ในช่วงพัฒนา ผลอาจผิดพลาดได้ — ถ้าตอบผิด
+          ช่วยบอกชนิดที่ถูกในกลุ่มเพื่อให้เราปรับปรุงให้แม่นยำขึ้น
+        </span>
       </div>
 
       {/* ── Workspace ──────────────────────────────────────────── */}
