@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useCallback } from 'react';
+import Link from 'next/link';
 import { ImageUp, ArrowRight } from 'lucide-react';
 import styles from './page.module.css';
 
@@ -10,6 +11,10 @@ const MAX_FILE_MB = MAX_FILE_SIZE / 1024 / 1024;
 const API_URL = '/api/predict';
 const LOW_CONFIDENCE_THRESHOLD = 0.75;
 const EMERGENCY_NUMBER = '1669';
+
+// Serpent AI chat isn't opened to users yet — shown as "coming soon" in the nav.
+// Flip to true when it's ready to wire into the frontend.
+const CHAT_ENABLED = false;
 
 // Model lineup — like Claude's tiers. Add a checkpoint + flip `available`
 // to true to ship a new one. `id` is sent to the backend as the `model` field.
@@ -179,6 +184,21 @@ export default function Home() {
           <h1 className={styles.wordmark}>จำแนกงู</h1>
           <span className={`${styles.wordmarkSub} ${styles.mono}`}>SNAKE&nbsp;ID</span>
         </div>
+        <nav className={styles.nav}>
+          <Link href="/" className={`${styles.navLink} ${styles.navLinkActive}`}>จำแนก</Link>
+          {CHAT_ENABLED ? (
+            <Link href="/chat" className={styles.navLink}>พูดคุยกับ Serpent AI</Link>
+          ) : (
+            <span
+              className={`${styles.navLink} ${styles.navLinkSoon}`}
+              aria-disabled="true"
+              title="พูดคุยกับ Serpent AI — เปิดให้ใช้เร็ว ๆ นี้"
+            >
+              พูดคุยกับ Serpent AI
+              <span className={styles.navSoonTag}>เร็ว ๆ นี้</span>
+            </span>
+          )}
+        </nav>
         <div className={`${styles.sysMeta} ${styles.mono}`}>
           <span className={styles.sysSpec}>131&nbsp;<b>SPECIES</b></span>
           <span className={styles.sysSpec}><b>{selectedModel.name}</b></span>
@@ -499,7 +519,7 @@ export default function Home() {
       </div>
 
       <footer className={styles.footer}>
-        <p className={styles.mono}>POWER BY BOATJWI</p>
+        <p className={styles.mono}>POWER BY Mysterious</p>
         <p className={styles.mono}>THAI SNAKE IDENTIFIER · v1.0</p>
       </footer>
     </div>

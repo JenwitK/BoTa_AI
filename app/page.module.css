@@ -55,6 +55,52 @@
 
 .brand { display: flex; align-items: baseline; gap: 14px; }
 
+/* ── Section nav (จำแนก / ถาม–ตอบ) ───────────────────────────────────────── */
+.nav { display: flex; gap: 4px; }
+
+.navLink {
+  padding: 7px 15px;
+  font-size: 0.7rem;
+  font-weight: 560;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: color 140ms ease, border-color 140ms ease, background-color 140ms;
+}
+@media (hover: hover) and (pointer: fine) {
+  .navLink:hover { color: var(--ink-soft); border-color: var(--line); }
+}
+.navLinkActive {
+  color: var(--ink);
+  border-color: var(--line-bright);
+  background: var(--panel);
+}
+.navLinkActive:hover { color: var(--ink); }
+
+/* Coming-soon nav item: visible but not clickable, with a small tag. */
+.navLinkSoon {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink-faint);
+  cursor: not-allowed;
+  border-color: transparent;
+}
+.navLinkSoon:hover { color: var(--ink-faint); border-color: transparent; }
+
+.navSoonTag {
+  font-size: 0.52rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: none;
+  color: var(--ink-faint);
+  border: 1px solid var(--line-bright);
+  padding: 2px 6px;
+  white-space: nowrap;
+}
+
 .wordmark {
   margin: 0;
   font-size: 1.7rem;
@@ -640,9 +686,26 @@
 
 @media (max-width: 480px) {
   .page { padding: 22px 14px 30px; }
-  .topbar { flex-direction: column; align-items: flex-start; gap: 12px; }
-  .sysMeta { flex-wrap: wrap; gap: 10px; }
+
+  /* Topbar stacks: brand, then full-width nav tabs, then the status meta. */
+  .topbar { flex-direction: column; align-items: stretch; gap: 13px; }
+  .brand { align-items: baseline; gap: 10px; }
   .wordmark { font-size: 1.5rem; }
+  .wordmarkSub { font-size: 0.58rem; }
+
+  /* Nav wraps naturally (labels differ in length); bigger tap targets. */
+  .nav { width: 100%; gap: 6px; flex-wrap: wrap; }
+  .navLink { padding: 9px 14px; }
+  .navLinkSoon { padding: 9px 12px; }
+
+  /* Status row: label + chip spread across the width, wrapping if needed. */
+  .sysMeta {
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+    font-size: 0.6rem;
+  }
+
   .uploadZone { min-height: 240px; }
   .previewImage { min-height: 240px; }
   .modelGrid { grid-template-columns: 1fr; }
