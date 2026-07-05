@@ -477,10 +477,6 @@ export default function Home() {
               <div className={`${styles.specGrid} ${styles.mono}`}>
                 <span className={styles.specKey}>Model</span>
                 <span className={styles.specVal}>{selectedModel.name}</span>
-                <span className={styles.specKey}>Arch</span>
-                <span className={styles.specVal}>{selectedModel.arch}</span>
-                <span className={styles.specKey}>Input</span>
-                <span className={styles.specVal}>{selectedModel.resolution}</span>
                 <span className={styles.specKey}>Classes</span>
                 <span className={styles.specVal}>{selectedModel.classes} species</span>
                 <span className={styles.specKey}>Region</span>
