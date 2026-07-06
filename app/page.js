@@ -218,6 +218,15 @@ export default function Home() {
         </span>
       </div>
 
+      {/* ── Region scope notice ────────────────────────────────── */}
+      <div className={styles.betaNotice} role="note">
+        <span className={`${styles.regionTag} ${styles.mono}`}>เฉพาะงูไทย</span>
+        <span>
+          ระบบนี้จำแนกได้เฉพาะงูที่พบในประเทศไทยเท่านั้น —
+          หากเป็นงูจากต่างประเทศ ผลลัพธ์อาจไม่ตรงกับความเป็นจริง
+        </span>
+      </div>
+
       {/* ── Workspace ──────────────────────────────────────────── */}
       <div className={styles.shell}>
 

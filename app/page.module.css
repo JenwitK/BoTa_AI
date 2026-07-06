@@ -184,6 +184,17 @@
   padding: 3px 8px;
 }
 
+.regionTag {
+  flex-shrink: 0;
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--safe);
+  border: 1px solid var(--safe);
+  padding: 3px 8px;
+}
+
 
 /* ── Workspace grid ──────────────────────────────────────────────────────── */
 
